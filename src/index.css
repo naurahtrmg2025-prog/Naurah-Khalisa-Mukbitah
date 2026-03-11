@@ -23,16 +23,16 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-emerald-950 text-emerald-50 font-sans antialiased selection:bg-emerald-500/30;
+    @apply bg-emerald-50 text-emerald-950 font-sans antialiased selection:bg-emerald-500/30;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-emerald-200 to-emerald-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-700;
   }
   
   .glass {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+    @apply bg-white/40 backdrop-blur-xl border border-emerald-100/50 shadow-sm;
   }
 }
