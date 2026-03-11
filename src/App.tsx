@@ -190,17 +190,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Decorative shapes */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-1/4 -right-20 w-64 h-64 border border-emerald-500/10 rounded-full hidden lg:block"
-      />
-      <motion.div 
-        animate={{ rotate: -360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-1/4 -left-20 w-96 h-96 border border-emerald-500/5 rounded-[40%] hidden lg:block"
-      />
     </section>
   );
 };
@@ -208,66 +197,36 @@ const Hero = () => {
 const About = () => {
   return (
     <section id="about" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            <div className="aspect-square rounded-3xl overflow-hidden glass p-8 flex items-center justify-center">
-              <div className="relative w-full h-full">
-                <motion.div 
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 border-2 border-dashed border-emerald-500/30 rounded-full"
-                />
-                <motion.div 
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-8 border-2 border-emerald-400/20 rounded-[30%]"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl animate-pulse" />
-                  <Layout size={80} className="text-emerald-400 relative z-10" />
-                </div>
-              </div>
-            </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-emerald-500/10 rounded-2xl -z-10 blur-xl" />
-          </motion.div>
+      <div className="max-w-3xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-3xl md:text-5xl font-display font-bold mb-8">
+            About <span className="text-emerald-400">Me</span>
+          </h2>
+          <div className="space-y-6 text-lg text-emerald-100/70 leading-relaxed">
+            <p>
+              I am a student interested in technology, web development, creative visual projects, and digital innovation. My journey in the digital world is driven by a desire to innovate and build tools that make a difference.
+            </p>
+            <p>
+              I specialize in creating digital projects that blend technical skills with creative design. Whether it's building educational platforms or interactive digital experiences, I strive for excellence and meaningful impact.
+            </p>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-8">
-              About <span className="text-emerald-400">Me</span>
-            </h2>
-            <div className="space-y-6 text-lg text-emerald-100/70 leading-relaxed">
-              <p>
-                I am a student interested in technology, web development, creative visual projects, and digital innovation. My journey in the digital world is driven by a desire to innovate and build tools that make a difference.
-              </p>
-              <p>
-                I specialize in creating digital projects that blend technical skills with creative design. Whether it's building educational platforms or interactive digital experiences, I strive for excellence and meaningful impact.
-              </p>
+          <div className="mt-10 grid grid-cols-2 gap-6 max-w-md mx-auto">
+            <div className="glass p-4 rounded-2xl">
+              <h4 className="text-emerald-400 font-bold text-2xl mb-1">2+</h4>
+              <p className="text-sm text-emerald-100/50 uppercase tracking-wider">Years Experience</p>
             </div>
-
-            <div className="mt-10 grid grid-cols-2 gap-6">
-              <div className="glass p-4 rounded-2xl">
-                <h4 className="text-emerald-400 font-bold text-2xl mb-1">2+</h4>
-                <p className="text-sm text-emerald-100/50 uppercase tracking-wider">Years Experience</p>
-              </div>
-              <div className="glass p-4 rounded-2xl">
-                <h4 className="text-emerald-400 font-bold text-2xl mb-1">10+</h4>
-                <p className="text-sm text-emerald-100/50 uppercase tracking-wider">Projects Built</p>
-              </div>
+            <div className="glass p-4 rounded-2xl">
+              <h4 className="text-emerald-400 font-bold text-2xl mb-1">10+</h4>
+              <p className="text-sm text-emerald-100/50 uppercase tracking-wider">Projects Built</p>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -279,9 +238,10 @@ interface ProjectCardProps {
   tags: string[];
   index: number;
   icon: React.ReactNode;
+  link: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags, index, icon }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags, index, icon, link }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -318,12 +278,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags, ind
           {description}
         </p>
         <div className="flex items-center justify-between mt-auto">
-          <a href="#" className="flex items-center gap-2 text-sm font-bold text-white hover:text-emerald-400 transition-colors">
+          <a href={link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold text-white hover:text-emerald-400 transition-colors">
             View Project <ArrowUpRight size={16} />
           </a>
           <div className="flex gap-3">
-            <Github size={18} className="text-emerald-100/40 hover:text-white cursor-pointer transition-colors" />
-            <ExternalLink size={18} className="text-emerald-100/40 hover:text-white cursor-pointer transition-colors" />
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              <ExternalLink size={18} className="text-emerald-100/40 hover:text-white cursor-pointer transition-colors" />
+            </a>
           </div>
         </div>
       </div>
@@ -337,13 +298,15 @@ const Projects = () => {
       title: "Tahfidz Management Application",
       description: "A web application that helps Islamic schools manage Quran memorization using the Sabaq, Sabqi, and Manzil method.",
       tags: ["Web App", "Education", "React"],
-      icon: <Code size={100} />
+      icon: <Code size={100} />,
+      link: "https://darulallm-tahfidz.my.id"
     },
     {
       title: "Tahfidz Landing Page",
       description: "A landing page designed to promote the Tahfidz management application with a modern UI and payment integration.",
       tags: ["UI/UX", "Landing Page", "Design"],
-      icon: <Layout size={100} />
+      icon: <Layout size={100} />,
+      link: "https://tahfidz.darulallm-tahfidz.my.id/"
     }
   ];
 
@@ -360,7 +323,7 @@ const Projects = () => {
             </p>
           </div>
           <motion.a 
-            href="#" 
+            href="#projects" 
             whileHover={{ x: 5 }}
             className="flex items-center gap-2 text-emerald-400 font-bold"
           >
@@ -377,54 +340,8 @@ const Projects = () => {
               tags={project.tags} 
               icon={project.icon} 
               index={i} 
+              link={project.link}
             />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Gallery = () => {
-  const images = [
-    "https://picsum.photos/seed/quran1/600/800",
-    "https://picsum.photos/seed/islamic-art/800/600",
-    "https://picsum.photos/seed/mosque-interior/600/600",
-    "https://picsum.photos/seed/arabic-calligraphy/800/800",
-    "https://picsum.photos/seed/education-islam/600/800",
-    "https://picsum.photos/seed/tahfidz-learning/800/600",
-  ];
-
-  return (
-    <section id="gallery" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
-            Portfolio <span className="text-emerald-400">Gallery</span>
-          </h2>
-          <p className="text-emerald-100/60 max-w-xl mx-auto">
-            Visual documentation and creative assets from my Tahfidz and Islamic digital projects.
-          </p>
-        </div>
-
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-          {images.map((src, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ scale: 1.02, rotate: Math.random() * 2 - 1 }}
-              className="rounded-2xl overflow-hidden glass p-2 cursor-pointer"
-            >
-              <img 
-                src={src} 
-                alt={`Gallery ${i}`} 
-                className="w-full h-auto rounded-xl"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
           ))}
         </div>
       </div>
